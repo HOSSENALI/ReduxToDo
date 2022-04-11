@@ -1,8 +1,11 @@
+import { tasks } from 'fontawesome';
 import React from 'react';
 import { Navbar,Nav } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { Link, withRouter } from "react-router-dom";
 import TestCounterHit from '../counter/TestCounterHit';
 const Header = () => {
+    const tasks = useSelector((state) => state.tasks)
     return (<>
         <Navbar bg="light" expand="lg">
             <div className="container">
@@ -18,7 +21,7 @@ const Header = () => {
                             <Link to="/about-us">About</Link>
                         </Nav.Link>
                         <Nav.Link>
-                            <Link to="/task-details"> Task</Link>
+                            <Link to="/task-details"> Task <span className='badge badge-danger'>{tasks.length}</span></Link>
                         </Nav.Link>
                         <Nav.Link>
                             <Link to="/login"> Login</Link>

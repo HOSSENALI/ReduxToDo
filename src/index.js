@@ -9,35 +9,12 @@ import './styles/custom-styles.css';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { createStore } from "redux";
+import counterReducer from './redux/reducers/CounterReducer';
+import Store from './redux/store/Store';
 
-//initialize a store object.............
-const initializeState = {
-  counter: 10,
-};
-//Do jobs on changes on action...........
-function counterReducer(state = initializeState, action) {
-  switch (action.type) {
-    case "INCREMENT_ONE":
-      return {
-        ...state,
-        counter: state.counter + 1,
-      };
-      break;
-    case "DECREMENT_ONE":
-      return {
-        ...state,
-        counter: state.counter - 1,
-      };
-      break;
-    default:
-      break;
-  }
-  return state;
-}
+
 //Set a store.......................
-let store = createStore(
-  counterReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+let store = Store();
 ReactDOM.render(
   <Provider store={store}>
     <App />

@@ -3,13 +3,14 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { storeTasksDataAction } from '../redux/actions/TaskAction';
+import { useDispatch } from 'react-redux';
 
 const AddTask = (props) => {
-
-    const { handleClose, onSubmit } = props;
+    const dispatch = useDispatch();
+    const { handleClose, initializeData, setShow } = props;
     const [title, setTitle] = useState("");
     const [priority, setPriority] = useState("");
-
 
     const changeTitle = (e) => {
         setTitle(e.target.value);
@@ -19,23 +20,22 @@ const AddTask = (props) => {
         setPriority(e.target.value);
         console.log(priority);
     }
-    const saveTask = () => {
-        if (title.length === 0 || priority==="") {
+    const saveTask = async () => {
+        if (title.length === 0 || priority === "") {
             alert("Please enter each value");
             return false;
         }
 
         const newSingleTask =
-            {
-               
-                Title: title,
-                Priority: priority
-            }
+        {
+            Title: title,
+            Priority: priority
+        };
 
-            onSubmit(newSingleTask);
-        
+        dispatch(storeTasksDataAction(newSingleTask));
+        setShow(false);
+
     }
-
     return (
         <>
 

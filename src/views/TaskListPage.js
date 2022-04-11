@@ -9,38 +9,24 @@ import { getTasksData, storeTaskData } from '../service/TaskService';
 import axios from 'axios';
 import CounterComponent from '../components/counter/CounterComponent';
 import TestCounterHit from '../components/counter/TestCounterHit';
-
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getTasksDataAction } from '../redux/actions/TaskAction';
 
 
 function TaskListPage() {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [tasks, setTasks] = useState([]);
+  //const [tasks, setTasks] = useState([]);
+  const tasks = useSelector((state) => state.tasks)
 
   useEffect(() => {
-    initializeData();
-  }, []);
+    //  initializeData();
+    dispatch(getTasksDataAction());
+  }, [tasks]);
 
-  const initializeData = async () => {
-
-    //getting data from API data from TaskService.js file.................
-    const tasksData = await getTasksData();
-    tasksData.sort();
-    tasksData.reverse();
-
-    setTasks(tasksData);
-  }
-
-  //saving data with API..........................
-  const onSubmitSaveTask = async (newTask) => {
-    const isAdded = await storeTaskData(newTask);
-    if (isAdded) {
-      initializeData();
-    }
-    setShow(false);
-  }
   return (
     <>
       <Layout>
@@ -53,7 +39,7 @@ function TaskListPage() {
           animation={true}
           centered
         >
-          <AddTask handleClose={handleClose} onSubmit={onSubmitSaveTask} />
+          <AddTask handleClose={handleClose} setShow={setShow} />
         </Modal>
         <TaskLists tasks={tasks} handleShow={handleShow} />
 
