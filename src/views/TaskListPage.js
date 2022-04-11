@@ -7,6 +7,8 @@ import TaskLists from './TaskLists';
 import AddTask from '../components/AddTask';
 import { getTasksData, storeTaskData } from '../service/TaskService';
 import axios from 'axios';
+import CounterComponent from '../components/counter/CounterComponent';
+import TestCounterHit from '../components/counter/TestCounterHit';
 
 
 
@@ -39,11 +41,11 @@ function TaskListPage() {
     }
     setShow(false);
   }
-
-
   return (
     <>
       <Layout>
+        <TestCounterHit />
+        <CounterComponent />
 
         <Modal
           show={show}
