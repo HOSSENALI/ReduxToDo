@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware } from "redux";
 import ThunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import CounterReducer from "../reducers/CounterReducer";
+
+import rootReducer from "../reducers/RootReducer";
 
 const middlewares = [ThunkMiddleware];
 const middlewareEnhancer = applyMiddleware(...middlewares);
@@ -10,7 +11,7 @@ const composedEnhancers = composeWithDevTools(...enhancers);
 
 export default function Store(previousstate) {
     const store = createStore(
-        CounterReducer,
+        rootReducer,
         previousstate,
         composedEnhancers
         // window. REDUX DEVTOOLS EXTENSION && window. REDUX_DEVTOOLS E

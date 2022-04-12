@@ -13,13 +13,11 @@ export const getTasksDataAction = () => (dispatch) => {
 };
 
 export const storeTasksDataAction = (taskItem) => (dispatch) => {
-    let isAdded = false;
+   
     axios
-    .post("https://todo-app37.herokuapp.com/addTodo", taskItem)
-        // .then((response) => {
-
-        //     isAdded = response.data;
-        //     dispatch({ type: "ADD_TASK", payload: taskItem });
-        //     dispatch(getTasksDataAction());
-        // });
+        .post("https://todo-app37.herokuapp.com/addTodo", taskItem)
+        .then((response) => {
+           // dispatch({ type: "ADD_TASK", payload: taskItem });
+            dispatch(getTasksDataAction());
+        });
 };

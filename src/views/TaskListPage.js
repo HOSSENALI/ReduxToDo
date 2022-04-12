@@ -5,10 +5,7 @@ import { Modal } from 'react-bootstrap'
 import Layout from '../components/layouts/Layout';
 import TaskLists from './TaskLists';
 import AddTask from '../components/AddTask';
-import { getTasksData, storeTaskData } from '../service/TaskService';
-import axios from 'axios';
 import CounterComponent from '../components/counter/CounterComponent';
-import TestCounterHit from '../components/counter/TestCounterHit';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getTasksDataAction } from '../redux/actions/TaskAction';
@@ -20,18 +17,20 @@ function TaskListPage() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   //const [tasks, setTasks] = useState([]);
-  const tasks = useSelector((state) => state.tasks)
-
+  const tasks = useSelector((state) => state.TaskReducer.tasks);
+ 
   useEffect(() => {
     //  initializeData();
     dispatch(getTasksDataAction());
-  }, [tasks]);
+    
+  }, []);
 
   return (
     <>
       <Layout>
-        <TestCounterHit />
+        
         <CounterComponent />
+        <br/>
 
         <Modal
           show={show}

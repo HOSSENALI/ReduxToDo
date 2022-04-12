@@ -1,15 +1,16 @@
-import { tasks } from 'fontawesome';
+
 import React from 'react';
-import { Navbar,Nav } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { Link, withRouter } from "react-router-dom";
-import TestCounterHit from '../counter/TestCounterHit';
+import { Link } from "react-router-dom";
+
 const Header = () => {
-    const tasks = useSelector((state) => state.tasks)
+    const tasks = useSelector((state) => state.TaskReducer.tasks);
+    const counter = useSelector((state) => state.CounterReducer.counter);
     return (<>
         <Navbar bg="light" expand="lg">
             <div className="container">
-                <Navbar.Brand href="#home">ToDo App</Navbar.Brand>
+                <Navbar.Brand href="#Home">ToDo App</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
@@ -26,7 +27,8 @@ const Header = () => {
                         <Nav.Link>
                             <Link to="/login"> Login</Link>
                         </Nav.Link>
-                        <TestCounterHit/>
+                      <button className='btn btn-success'> {counter}</button> 
+                      
                     </Nav>
                 </Navbar.Collapse>
             </div>

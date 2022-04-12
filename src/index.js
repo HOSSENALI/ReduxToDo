@@ -8,8 +8,6 @@ import 'font-awesome/css/font-awesome.min.css';
 import './styles/custom-styles.css';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { createStore } from "redux";
-import counterReducer from './redux/reducers/CounterReducer';
 import Store from './redux/store/Store';
 
 

@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 
 const AddTask = (props) => {
     const dispatch = useDispatch();
-    const { handleClose, initializeData, setShow } = props;
+    const { handleClose, setShow } = props;
     const [title, setTitle] = useState("");
     const [priority, setPriority] = useState("");
 
@@ -31,7 +31,7 @@ const AddTask = (props) => {
             Title: title,
             Priority: priority
         };
-
+       
         dispatch(storeTasksDataAction(newSingleTask));
         setShow(false);
 
