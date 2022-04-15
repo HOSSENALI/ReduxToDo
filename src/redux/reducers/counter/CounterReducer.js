@@ -1,7 +1,7 @@
-
+import * as Types from '../../types/Types'
 //initialize a store object.............
 const initializeState = {
-  counter: 10,
+  counter: 0,
 };
 //Do jobs on changes on action...........
 
@@ -13,21 +13,21 @@ function counterReducer(state = initializeState, action) {
         ...state,
         counter: state.counter + parseInt(upDatedValue),
       };
-      break;
+      
 
-    case "DECREMENT_ONE":
+    case Types.DECREMENT_ONE:
       return {
         ...state,
         counter: state.counter - 1,
       };
-      break;
-    case "UPDATE":
+      
+    case Types.UPDATE:
       console.log("Nothing");
       return {
         ...state,
         counter: parseInt(action.payload),
       };
-      break;
+     
     default:
       break;
   }

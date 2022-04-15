@@ -17,7 +17,7 @@ const CounterComponent = () => {
 
             <div className='form-inline mt-4 '>
                 <div className='form-group'>
-                    <input className='form-control' value={number} onChange={(e) => setNumber(e.target.value)}></input>
+                    <input className='form-control' type="number" value={number} onChange={(e) => setNumber(e.target.value)}></input>
                 </div>
                 <button className="btn btn-info ml-2" onClick={() => dispatch({ type: "UPDATE", payload: number })}>Update</button>
                 <button className='btn btn-dark ml-2' onClick={() => dispatch({ type: "INCREMENT_ONE", payload: number })}>Add</button>

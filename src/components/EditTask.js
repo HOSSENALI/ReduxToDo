@@ -1,23 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { handleChangeTextInputAction, storeTasksDataAction } from '../redux/actions/TaskAction';
+import { getTasksDetailsDataAction, handleChangeTextInputAction, storeTasksDataAction, updateTasksDataAction } from '../redux/actions/TaskAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
-const AddTask = (props) => {
+const EditTask = (props) => {
     const dispatch = useDispatch();
+    const params = useParams();
+    const {id}=params;
+    console.log(params);
     const { handleClose, setShow } = props;
 
+
     const taskForm = useSelector((state) => state.TaskReducer.taskForm);
-   
+
     const handleChangeText = (name, value) => {
         dispatch(handleChangeTextInputAction(name, value));
+
     }
-    const saveTask = async () => {
-       
-        dispatch(storeTasksDataAction(taskForm));
+    useEffect(() => {
+        dispatch(getTasksDetailsDataAction(id));
+
+    }, []);
+    const updateTask = async () => {
+
+        dispatch(updateTasksDataAction(taskForm));
 
         setShow(false);
 
@@ -64,7 +74,7 @@ const AddTask = (props) => {
                 <button variant="secondary" onClick={handleClose}>
                     Close
                 </button>
-                <button variant="primary" onClick={saveTask}  >
+                <button variant="primary" onClick={updateTask}  >
                     Save Changes
                 </button>
             </Modal.Footer>
@@ -73,4 +83,4 @@ const AddTask = (props) => {
     );
 }
 
-export default AddTask;
+export default EditTask;

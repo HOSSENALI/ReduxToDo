@@ -1,7 +1,11 @@
 import React from 'react'
-import {Table} from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { deleteTasksDataAction } from '../redux/actions/TaskAction';
 const TaskLists = (props) => {
     const { tasks, handleShow } = props;
+    const dispatch=useDispatch();
     return (<>
         <div>
             <div style={{ float: "left" }}>
@@ -31,16 +35,19 @@ const TaskLists = (props) => {
                         <td>{task.Title}</td>
                         <td>{task.Priority}</td>
                         <td>
+                            <Link to={`/edit/${task._id}`}>
                             <span><i className='fa fa-pencil text-success pointer mr-2'> Edit Task</i></span>
-                            <span> <i className='fa fa-trash text-danger pointer ml-2'> Delete Task</i></span>
-                        </td>
+                        </Link>
+
+                        <span> <i className='fa fa-trash text-danger pointer ml-2'onClick={()=>dispatch(deleteTasksDataAction(task._id))}> Delete Task</i></span>
+                    </td>
                     </tr>
                 ))}
 
 
 
-            </tbody>
-        </Table>
+        </tbody>
+    </Table>
     </>
     );
 }

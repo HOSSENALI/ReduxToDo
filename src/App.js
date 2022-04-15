@@ -6,6 +6,7 @@ import TaskListPage from "./views/TaskListPage";
 import TaskDetailsPage from "./views/TaskDetailsPage";
 import AboutUs from "./views/AboutUs";
 import Login from "./login/Login";
+import TaskEditPage from "./views/TaskEditPage";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
             </Route>
             <Route path="/task-details" exact={true}>
               <TaskDetailsPage />
+            </Route>
+            <Route path="/edit/:id" exact={true}>
+              <TaskEditPage />
             </Route>
             <Route path="/login" exact={true}>
               <Login />
