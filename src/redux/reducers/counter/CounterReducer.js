@@ -22,7 +22,7 @@ function counterReducer(state = initializeState, action) {
       };
       
     case Types.UPDATE:
-      console.log("Nothing");
+      
       return {
         ...state,
         counter: parseInt(action.payload),

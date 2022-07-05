@@ -18,9 +18,7 @@ const AddTask = (props) => {
     const saveTask = async () => {
        
         dispatch(storeTasksDataAction(taskForm));
-
         setShow(false);
-
     }
     return (
         <>
