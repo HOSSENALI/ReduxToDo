@@ -22,12 +22,9 @@ const Header = () => {
                             <Link to="/about-us">About</Link>
                         </Nav.Link>
                         <Nav.Link>
-                            <Link to="/task-details"> Task <span className='badge badge-danger'>{tasks.length}</span></Link>
-                        </Nav.Link>
-                        <Nav.Link>
                             <Link to="/login"> Login</Link>
                         </Nav.Link>
-                      <button className='btn btn-success'> {counter}</button> 
+                      
                       
                     </Nav>
                 </Navbar.Collapse>
